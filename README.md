@@ -1,27 +1,72 @@
 # Daily Task Tracker
 
-A Windows-first, offline daily task tracker inspired by the GitHub contribution graph.
+An offline-first Windows daily task tracker designed to keep daily routines simple, visible, and consistent.
 
-## What it does
-- Add unlimited **Must** and **Optional** tasks.
-- Every task has a start and end date.
-- A day is **red** when any active Must task is incomplete.
-- A day is **green** when all active Must tasks are complete.
-- A day is **bright green** when all Must and all Optional tasks are complete.
-- Automatically uses the current date; each new day gets its own completion state.
-- Shows daily progress, current streak, total followed days, and a contribution-style consistency grid.
-- Data is stored locally on the PC; no account and no internet are needed after installation.
-- Export/import JSON backups.
-- Windows installer creates a Start Menu shortcut and uses the included **T** icon.
+## Features
 
-## Run from source
-1. Install Node.js LTS.
-2. Open this folder in PowerShell/Command Prompt.
-3. Run `npm install` once.
-4. Run `npm start`.
+- Add unlimited daily tasks
+- Create **Must-do** and **Optional** tasks
+- Set a start date and end date for every task
+- Automatically refresh the active task list for each day
+- Track daily task completion
+- **Red** day → one or more Must-do tasks were missed
+- **Green** day → all Must-do tasks were completed
+- **Bright Green / Perfect** day → all Must-do and Optional tasks were completed
+- Track your **current streak**
+- Track total **successful days**
+- View long-term consistency using a contribution-style calendar
+- Filter tasks by **All, Must, or Optional**
+- Backup local task data
+- Works offline and keeps task data locally
 
-## Build Windows installer
-Run:
-`npm run dist`
+## Screenshots
 
-The installer will be created inside `release/`. It creates a Start Menu shortcut and desktop shortcut.
+### Dashboard
+
+![Daily Task Tracker Dashboard](doc/Main_page.png)
+
+### Add Task
+
+![Add Task](doc/Add_task.png)
+
+## Task Types
+
+### Must-do
+
+Must-do tasks determine whether the day is successful.
+
+If all Must-do tasks are completed:
+
+**Day = Green**
+
+If any Must-do task is missed:
+
+**Day = Red**
+
+### Optional
+
+Optional tasks are not required for a successful day.
+
+If all Must-do tasks **and** all Optional tasks are completed:
+
+**Day = Bright Green / Perfect**
+
+## Date-Based Tasks
+
+Every task can have its own active date range.
+
+Each task contains:
+
+- Task name
+- Task type
+- Start date
+- End date
+
+A task is displayed as an active task only during its configured date range.
+
+Example:
+
+```text
+DSA Practice
+Start: Sep 24, 2026
+End: Dec 31, 2027
