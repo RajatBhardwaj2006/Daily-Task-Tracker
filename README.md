@@ -27,7 +27,72 @@ An offline-first Windows daily task tracker designed to keep daily routines simp
 
 ### Add Task
 
-![Add Task](doc/Add_task.png)
+![Daily Task Tracker Add Task](doc/Add_task.png)
+
+## Installation
+
+### Windows — Recommended
+
+If you just want to use Daily Task Tracker, download the latest Windows installer from the GitHub Releases page.
+
+**[Download the latest release](../../releases/latest)**
+
+1. Open the latest release.
+2. Download the `.exe` installer.
+3. Run the downloaded installer.
+4. Follow the installation steps.
+5. Launch **Daily Task Tracker** from the Start Menu or desktop shortcut.
+
+> **You do not need Node.js, npm, Git, or any development tools to use the installed application.**
+
+---
+
+### Run from Source
+
+If you want to run or modify the project from source, you need:
+
+- Windows
+- Node.js
+- npm
+- Git
+
+#### 1. Clone the repository
+
+```bash
+git clone https://github.com/RajatBhardwaj2006/Daily-Task-Tracker.git
+```
+
+#### 2. Open the project folder
+
+```bash
+cd Daily-Task-Tracker
+```
+
+#### 3. Install the required dependencies
+
+```bash
+npm install
+```
+
+#### 4. Start the application
+
+```bash
+npm start
+```
+
+The **Daily Task Tracker** application should now open.
+
+## Building the Windows Installer
+
+To create a Windows `.exe` installer from the source code, run:
+
+```bash
+npm run dist
+```
+
+The generated installer will be created in the project's build/release output folder.
+
+The generated `.exe` can then be installed on a Windows computer like a normal application.
 
 ## Task Types
 
@@ -70,3 +135,79 @@ Example:
 DSA Practice
 Start: Sep 24, 2026
 End: Dec 31, 2027
+```
+
+## Daily Progress
+
+Daily Task Tracker keeps track of your progress throughout each day.
+
+The tracker shows:
+
+- Must-do task completion
+- Optional task completion
+- Daily completion status
+- Current streak
+- Total successful days
+- Today's progress
+
+## Consistency Tracking
+
+The contribution-style calendar provides a long-term view of your consistency.
+
+Daily status is represented as:
+
+- **Red** → One or more Must-do tasks were missed
+- **Green** → All Must-do tasks were completed
+- **Bright Green / Perfect** → All Must-do and Optional tasks were completed
+
+This makes it easy to see your consistency over a longer period.
+
+## Backup
+
+The application includes a backup option for your local task data.
+
+Use the backup functionality to keep a copy of your task information and restore it when needed.
+
+## Offline & Privacy
+
+Daily Task Tracker is designed to work offline.
+
+Your task data is stored locally on your computer and the application does not require an internet connection for normal use.
+
+Do not commit personal task data, local databases, credentials, or other private information to the GitHub repository.
+
+## Development
+
+After installing the dependencies, start the application with:
+
+```bash
+npm start
+```
+
+To create the Windows installer:
+
+```bash
+npm run dist
+```
+
+## Project Structure
+
+```text
+Daily-Task-Tracker/
+│
+├── doc/
+│   ├── Main_page.png
+│   └── Add_task.png
+│
+├── src/
+│   └── ...
+│
+├── package.json
+├── package-lock.json
+├── README.md
+└── .gitignore
+```
+
+## License
+
+This project is provided for personal and educational use.
