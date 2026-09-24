@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Daily Task Tracker</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">T</div>
+      <div>
+        <div class="brand-name">Daily Task Tracker</div>
+        <div class="brand-sub">offline • private • yours</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="todayBtn" class="ghost-btn">Today</button>
+      <button id="backupBtn" class="ghost-btn">Backup</button>
+      <button id="settingsBtn" class="icon-btn" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-row">
+      <div>
+        <div class="eyebrow" id="dateLabel">TODAY</div>
+        <h1 id="headline">Keep the streak alive.</h1>
+        <p id="subheadline">Complete every must-do task to make today green.</p>
+      </div>
+      <button id="addTaskBtn" class="primary-btn">＋ Add task</button>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Daily progress</div>
+        <div class="stat-value" id="dailyProgress">0 / 0</div>
+        <div class="progress-track"><div id="dailyBar" class="progress-fill"></div></div>
+        <div class="stat-foot"><span id="dailyStatus">No must tasks yet</span><span id="optionalStatus"></span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Current streak</div>
+        <div class="stat-value"><span id="streak">0</span> days</div>
+        <div class="mini-copy">Consecutive successful days</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Days followed</div>
+        <div class="stat-value"><span id="followed">0</span></div>
+        <div class="mini-copy">Total days with every must task done</div>
+      </div>
+      <div class="stat-card status-card" id="statusCard">
+        <div class="stat-label">Today</div>
+        <div class="status-dot" id="todayDot"></div>
+        <div class="status-text" id="todayStatus">Pending</div>
+        <div class="mini-copy" id="todayStatusCopy">Finish your must tasks.</div>
+      </div>
+    </section>
+
+    <section class="panel contribution-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Consistency</h2>
+          <p>Every day gets a dot. Red = missed must task, green = completed, bright green = completed with all optional tasks too.</p>
+        </div>
+        <div class="legend">
+          <span><i class="legend-dot red"></i>Missed</span>
+          <span><i class="legend-dot green"></i>Done</span>
+          <span><i class="legend-dot bright"></i>Perfect</span>
+        </div>
+      </div>
+      <div id="calendar" class="calendar-wrap"></div>
+    </section>
+
+    <section class="panel tasks-panel">
+      <div class="panel-header task-header">
+        <div>
+          <h2>Today’s tasks</h2>
+          <p id="taskDateHint">Tasks active today</p>
+        </div>
+        <div class="filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="must">Must</button>
+          <button class="filter" data-filter="optional">Optional</button>
+        </div>
+      </div>
+      <div id="taskList" class="task-list"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <div class="empty-icon">T</div>
+        <h3>No tasks for today</h3>
+        <p>Add your first must-do or optional task. It will automatically appear each day while it is inside its date range.</p>
+        <button class="primary-btn" id="emptyAddBtn">＋ Add task</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Local-only data • saved on this PC</span>
+    <span id="rangeLabel"></span>
+  </footer>
+</div>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-head"><h2 id="modalTitle">Add task</h2><button class="close-btn" id="closeModal">×</button></div>
+    <form id="taskForm">
+      <label>Task name<input id="taskName" required maxlength="80" placeholder="e.g. DSA practice" /></label>
+      <div class="two-col">
+        <label>Type<select id="taskType"><option value="must">Must</option><option value="optional">Optional</option></select></label>
+        <label>Start date<input id="taskFrom" type="date" required /></label>
+      </div>
+      <label>End date<input id="taskTo" type="date" required /></label>
+      <div class="form-note">Must tasks decide whether a day is red or green. Optional tasks can turn a green day into bright green when every optional task is also complete.</div>
+      <div class="modal-actions"><button type="button" class="ghost-btn" id="cancelTask">Cancel</button><button type="submit" class="primary-btn">Save task</button></div>
+    </form>
+  </div>
+</div>
+
+<div id="settingsModal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-head"><h2>Tracker settings</h2><button class="close-btn" id="closeSettings">×</button></div>
+    <form id="settingsForm">
+      <label>Tracker start date<input id="globalFrom" type="date" required /></label>
+      <label>Tracker end date<input id="globalTo" type="date" required /></label>
+      <div class="form-note">The consistency grid is drawn across this range. Task date ranges can be shorter.</div>
+      <div class="modal-actions"><button type="button" class="ghost-btn" id="importBtn">Import backup</button><button type="button" class="ghost-btn" id="exportBtn">Export backup</button><button type="submit" class="primary-btn">Save settings</button></div>
+    </form>
+  </div>
+</div>
+
+<script src="renderer.js"></script>
+</body>
+</html>
